@@ -7,7 +7,7 @@ decorator==5.1.1
 idna==3.7
 isort==5.13.2
 lazy-object-proxy==1.10.0
-Mastodon.py==1.8.1
+Mastodon.py==1.5.1
 mccabe==0.7.0
 platformdirs==4.2.0
 pylint==3.1.0
@@ -17,11 +17,11 @@ python-magic==0.4.27
 pytz==2024.1
 PyYAML==6.0.1
 requests==2.31.0
-schedule==1.2.1
+schedule==1.1.0
 six==1.16.0
 soupsieve==2.5
 toml==0.10.2
 # typed-ast==1.4.3
 typing-extensions==4.11.0
-urllib3==2.2.1
+urllib3==1.26.7
 wrapt==1.16.0

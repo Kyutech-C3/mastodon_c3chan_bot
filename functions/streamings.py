@@ -34,7 +34,7 @@ class Bot(StreamListener):
         if get_status['account']['bot'] or get_status['reblog'] != None:
             return
 
-        if 'ロックマン' in get_status['content']:
+        if 'C3ちゃん' in get_status['content']:
             self.client.status_favourite(get_status)
             if re.search(r'((お(腹|なか)(空|す)いた)|(腹|はら)(減|へ)った)', get_status['content']):
                 food_terro(self.client)

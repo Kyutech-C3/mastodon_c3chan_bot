@@ -64,9 +64,9 @@ def task_boost_today(client: Mastodon):
                 continue
         toottime = tl['created_at'].replace(tzinfo=None) + timedelta(hours=9)
         if  todaystart <= toottime:
-            time.sleep(5)
+            time.sleep(10)
             client.status_unreblog(tl)
-            time.sleep(5)
+            time.sleep(10)
             client.status_reblog(tl)
         else:
             break
