@@ -91,10 +91,10 @@ def task_boost_tomorrow(client: Mastodon):
 def day_change(client: Mastodon):
     dt_now = datetime.now()
     if dt_now.strftime("%j") == "001":
-        client.account_update_credentials(avatar="medias/new_icon.png")
+        client.account_update_credentials(avatar="medias/c3chan_icon.png")
         client.toot("あけましておめでとう！皆、今年もよろしくね！")
     else:
-        client.account_update_credentials(avatar="medias/nomal_icon.png")
+        client.account_update_credentials(avatar="medias/c3chan_icon.png")
         if dt_now.day == 1:
             client.status_post(
                 status = '月が変わってお知らせよ！',
