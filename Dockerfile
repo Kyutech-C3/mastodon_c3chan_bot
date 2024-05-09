@@ -6,6 +6,8 @@ RUN mkdir -p /opt/rockman
 COPY . /opt/rockman
 WORKDIR /opt/rockman
 
+ENV TZ=Asia/Tokyo
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
