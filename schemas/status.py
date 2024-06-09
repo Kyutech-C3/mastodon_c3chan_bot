@@ -32,14 +32,14 @@ class Status:
     account: User
     in_reply_to_id: str
     in_reply_to_account_id: str
-    rebrog: dict
+    reblog: dict
     content: str
     sensitive: bool
     spoiler_text: str
     visibility: str
     language: str
     replies_count: int
-    rebrogs_count: int
+    reblogs_count: int
     favourites_count: int
     application: Optional[dict]
     media_attachments: List[dict]
