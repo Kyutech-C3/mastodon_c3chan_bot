@@ -211,11 +211,11 @@ def random_toot(client: Mastodon):
 
 def parrot_toot(client: Mastodon, content: str):
     newtoot = content
-    if content.find("ロックマン") == 0:
-        if content.find("ロックマン、") == 0:
-            newtoot = content.replace("ロックマン、", "")
+    if content.find("C3ちゃん") == 0:
+        if content.find("C3ちゃん、") == 0:
+            newtoot = content.replace("C3ちゃん、", "")
         else:
-            newtoot = content.replace("ロックマン", "")
+            newtoot = content.replace("C3ちゃん", "")
     if len(newtoot[0 : newtoot.find("って言")]) > 0:
         toottext = newtoot[0 : newtoot.find("って言")]
         sptxt = ''
