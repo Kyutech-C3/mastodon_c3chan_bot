@@ -7,7 +7,7 @@ decorator==5.1.1
 idna==3.7
 isort==5.13.2
 lazy-object-proxy==1.10.0
-Mastodon.py==1.5.1
+Mastodon.py==2.0.1
 mccabe==0.7.0
 platformdirs==4.2.0
 pylint==3.1.0
