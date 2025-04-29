@@ -1,14 +1,24 @@
-FROM python:3.9-alpine
+FROM python:3.13-alpine
 
-RUN apk --update add tzdata gcc
+# 必要パッケージインストール
+RUN apk --no-cache add tzdata gcc musl-dev
 
-RUN mkdir -p /opt/rockman
-COPY . /opt/rockman
-WORKDIR /opt/rockman
+# 作業ディレクトリ作成
+WORKDIR /opt/c3chan
 
+# 先にrequirements.txtだけコピー
+COPY requirements.txt .
+
+# パッケージインストール
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
+
+# 残りのファイルコピー
+COPY . .
+
+# タイムゾーン環境変数
 ENV TZ=Asia/Tokyo
+ENV PYTHONUNBUFFERED=1
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-CMD [ "python3", "main.py" ]
+# アプリ起動
+CMD ["python3", "main.py"]
