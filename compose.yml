@@ -1,0 +1,11 @@
+services:
+  c3chan:
+    build:
+      context: .   # Dockerfileがあるディレクトリ
+      dockerfile: Dockerfile
+    container_name: mastodon_c3chan_bot
+    environment:
+      - TZ=Asia/Tokyo
+    volumes:
+      - .:/opt/c3chan
+    command: ["python3", "main.py"]
