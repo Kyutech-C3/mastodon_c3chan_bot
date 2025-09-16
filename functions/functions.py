@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 from typing import List
 from schemas.status import Status, User
 from mastodon import Mastodon
+from mastodon.errors import MastodonAPIError
 from utils.load_yaml import status_dict, config_dict, update_status
 import time
 import random
@@ -33,6 +34,16 @@ def rewrite(text: str, doRet: bool = True):
     text = text.replace('&amp;', '&')
     text = text.replace('&quot;', '\"')
     return text
+
+def safe_boost(client: Mastodon, status: Status):
+    try:
+        time.sleep(10)
+        client.status_unreblog(status)
+        time.sleep(10)
+        client.status_reblog(status)
+    except MastodonAPIError as e:
+        if "Reblogは既にブーストされています" in e.args[3]:
+            client.toot(f"あれれ、ブーストに失敗しちゃった…\n{status['url']}")
 
 def chime(client: Mastodon, chime_time: str, class_time: int = 0):
     dt_now = datetime.now()
@@ -64,10 +75,7 @@ def task_boost_today(client: Mastodon):
                 continue
         toottime = tl['created_at'].replace(tzinfo=None) + timedelta(hours=9)
         if  todaystart <= toottime:
-            time.sleep(10)
-            client.status_unreblog(tl)
-            time.sleep(10)
-            client.status_reblog(tl)
+            safe_boost(client, tl)
         else:
             break
 
@@ -81,10 +89,7 @@ def task_boost_tomorrow(client: Mastodon):
                 continue
         toottime = tl['created_at'].replace(tzinfo=None) + timedelta(hours=9)
         if yeststart <= toottime < todaystart:
-            time.sleep(5)
-            client.status_unreblog(tl)
-            time.sleep(5)
-            client.status_reblog(tl)
+            safe_boost(client, tl)
         else:
             break
 
@@ -113,10 +118,7 @@ def summer_target(client: Mastodon):
         for tl in tasklist:
             toottime = tl['created_at'].replace(tzinfo=None) + timedelta(hours=9)
             if  thissummerstart <= toottime:
-                time.sleep(5)
-                client.status_unreblog(tl)
-                time.sleep(5)
-                client.status_reblog(tl)
+                safe_boost(client, tl)
             else:
                 break
 
@@ -129,10 +131,7 @@ def spring_target(client: Mastodon):
         for tl in tasklist:
             toottime = tl['created_at'].replace(tzinfo=None) + timedelta(hours=9)
             if  thissummerstart <= toottime:
-                time.sleep(5)
-                client.status_unreblog(tl)
-                time.sleep(5)
-                client.status_reblog(tl)
+                safe_boost(client, tl)
             else:
                 break
 
