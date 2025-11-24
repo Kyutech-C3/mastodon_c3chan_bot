@@ -107,7 +107,7 @@ def day_change(client: Mastodon):
             )
             buzz_toot(client)
         else:
-            client.toot("日付が変わったよ！\n「＃今日やること」でトゥートすると僕が日中何度もブーストするよ！")
+            client.toot("日付が変わったよ！\nハッシュタグ「今日やること」でトゥートすると僕が日中何度もブーストするよ！")
 
 def summer_target(client: Mastodon):
     if status_dict['schedule_bool']['summer']:
