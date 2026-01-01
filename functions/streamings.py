@@ -88,7 +88,7 @@ class Bot(StreamListener):
             if get_status['content'].find('三点リーダージェネレーター\n') == 0 and re.search(r'(…|\.\.\.|・・・|･･･)', get_status['content']):
                 three_point_generator(self.client, get_status)
                 return
-            if get_status['account']['id'] == config_dict['developer_account_id']:
+            if int(get_status['account']['id']) == int(config_dict['developer_account_id']):
                 for b_key, b_value in self.bool_keywords.items():
                     if b_key in get_status['content']:
                         for s_value in self.status_keywords:
