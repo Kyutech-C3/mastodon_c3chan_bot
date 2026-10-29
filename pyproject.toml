@@ -1,0 +1,19 @@
+[project]
+name = "mastodon-c3chan-bot"
+version = "0.1.0"
+description = ""
+# readme = "README.md"
+requires-python = ">=3.15"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "mastodon-py>=2.3.3",
+    "python-dotenv>=1.2.4",
+    "pytz>=2026.5",
+    "pyyaml>=6.0.3",
+    "schedule>=1.2.2",
+]
+
+[dependency-groups]
+dev = [
+    "pylint>=4.1.3",
+]

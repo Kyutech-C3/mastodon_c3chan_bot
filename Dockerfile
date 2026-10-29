@@ -1,17 +1,16 @@
-FROM python:3.13-alpine
+FROM ghcr.io/astral-sh/uv:python3.15-alpine
 
 # 必要パッケージインストール
-RUN apk --no-cache add tzdata gcc musl-dev
+RUN apk --no-cache add tzdata
 
 # 作業ディレクトリ作成
 WORKDIR /opt/c3chan
 
-# 先にrequirements.txtだけコピー
-COPY requirements.txt .
+# 先に依存関係の情報だけコピー
+COPY .python-version pyproject.toml uv.lock .
 
 # パッケージインストール
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
+RUN uv sync --locked
 
 # 残りのファイルコピー
 COPY . .
@@ -21,4 +20,4 @@ ENV TZ=Asia/Tokyo
 ENV PYTHONUNBUFFERED=1
 
 # アプリ起動
-CMD ["python3", "main.py"]
+CMD ["uv", "run", "main.py"]

@@ -9,4 +9,4 @@ services:
     volumes:
       - .:/opt/c3chan
     restart: unless-stopped
-    command: ["python3", "main.py"]
+    command: ["uv", "run", "main.py"]
