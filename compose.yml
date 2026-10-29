@@ -8,4 +8,5 @@ services:
       - TZ=Asia/Tokyo
     volumes:
       - .:/opt/c3chan
+    restart: unless-stopped
     command: ["python3", "main.py"]
